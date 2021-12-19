@@ -147,10 +147,20 @@ def event_handle(event):
         line_bot_api.reply_message(rtoken, replyObj)
         return ''
 
-    if msgType == "text":
-        msg = str(event["message"]["text"])
-        replyObj = TextSendMessage(text=msg)
-        line_bot_api.reply_message(rtoken, replyObj)
+    if msgType == "text": 
+       msg = str(event["message"]["text"]) 
+       if msg == "สวัสดี" : 
+          replyObj = TextSendMessage(text="เออ ดีด้วย") 
+          line_bot_api.reply_message(rtoken, replyObj) 
+       elif msg == "นอนยัง" :
+          replyObj = TextSendMessage(text="ยังเลย วะ")
+          line_bot_api.reply_message(rtoken, replyObj)
+       elif msg == "กินข้าวยัง" : 
+          replyObj = TextSendMessage(text="ยังขี้เกียจจะนอน") 
+          line_bot_api.reply_message(rtoken, replyObj)
+       elif msg == "covid" : url="https://covid19.ddc.moph.go.th/api/Cases/today-cases-all" 
+       rasponse = requests.gat(ur1) 
+       rasponse = requests.json()
     elif msgType == "image":
         try:
             message_content = line_bot_api.get_message_content(event['message']['id'])
